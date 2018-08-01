@@ -1,6 +1,9 @@
 package com.choucair.certification.automation.demo.tasks;
 
 import java.util.List;
+
+import com.choucair.certification.automation.demo.interactions.Select;
+import com.choucair.certification.automation.demo.interactions.SelectThe;
 import com.choucair.certification.automation.demo.model.RegistrationForm;
 import com.choucair.certification.automation.demo.userinterface.AutomationDemoPage;
 
@@ -30,10 +33,15 @@ public class RegisterOnThePage implements Task {
 		for (RegistrationForm registrationForm : registrationData) {
 			actor.attemptsTo(Enter.theValue(registrationForm.getFirstName()).into(AutomationDemoPage.FIRSTNAME));
 			actor.attemptsTo(Enter.theValue((registrationForm.getLastName())).into(AutomationDemoPage.LASTNAME));
+			actor.attemptsTo(Enter.theValue(registrationForm.getAddress()).into(AutomationDemoPage.ADDRESS));
 			actor.attemptsTo(Enter.theValue((registrationForm.getEmailAdress())).into(AutomationDemoPage.EMAILADRESS));
 			actor.attemptsTo(Enter.theValue((registrationForm.getPhone())).into(AutomationDemoPage.PHONE));
 			actor.attemptsTo(Click.on(AutomationDemoPage.GENDER));
+			actor.attemptsTo(Click.on(AutomationDemoPage.HOBBIES));
+			actor.attemptsTo(Select.theElement(registrationForm.getLanguages(), AutomationDemoPage.LANGUAGES));
+			actor.attemptsTo(SelectFromOptions.byVisibleText(registrationForm.getSkills()).from(AutomationDemoPage.SKILLS));
 			actor.attemptsTo(SelectFromOptions.byVisibleText(registrationForm.getCountry()).from(AutomationDemoPage.COUNTRY));
+			actor.attemptsTo(SelectThe.Country(registrationForm.getSelectCountry(), AutomationDemoPage.SELECT_COUNTRY));
 			actor.attemptsTo(SelectFromOptions.byVisibleText(registrationForm.getYear()).from(AutomationDemoPage.YEAR));
 			actor.attemptsTo(SelectFromOptions.byVisibleText(registrationForm.getMonth()).from(AutomationDemoPage.MONTH));
 			actor.attemptsTo(SelectFromOptions.byVisibleText(registrationForm.getDay()).from(AutomationDemoPage.DAY));
